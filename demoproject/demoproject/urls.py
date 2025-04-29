@@ -19,4 +19,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
+    # HTML 登入登出、密碼重設等，直接用 Django 內建
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
