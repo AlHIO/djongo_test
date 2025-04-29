@@ -10,6 +10,8 @@ from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.authtoken.models import Token
 
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import TemplateView
 
 class LoginAPIView(APIView):
     permission_classes = [AllowAny]
@@ -42,3 +44,12 @@ class SignUpView(generic.CreateView):
     form_class = UserCreationForm
     template_name = 'registration/signup.html'
     success_url = reverse_lazy('login')
+
+
+
+class ProfileView(LoginRequiredMixin, TemplateView):
+    """
+    使用者必須已登入才能看
+    template_name 會對應到 templates/registration/profile.html
+    """
+    template_name = 'registration/profile.html'
