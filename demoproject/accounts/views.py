@@ -1,9 +1,24 @@
-from django.contrib.auth.views import LoginView as DjangoLoginView, LogoutView as DjangoLogoutView
-from django.urls import reverse_lazy
+from django.contrib.auth import authenticate
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.authtoken.models import Token
 
-class LoginView(DjangoLoginView):
-    template_name = 'registration/login.html'   # 可先用 Django 預設模板
-    success_url = reverse_lazy('some_dashboard')  # 登入後導向
+class LoginAPIView(APIView):
+    permission_classes = [AllowAny]
 
-class LogoutView(DjangoLogoutView):
-    next_page = reverse_lazy('login')            # 登出後導向
+    def post(self, request):
+        u = request.data.get('username')
+        p = request.data.get('password')
+        user = authenticate(request, username=u, password=p)
+        if not user:
+            return Response({'error': '帳號或密碼錯誤'}, status=400)
+        token, _ = Token.objects.get_or_create(user=user)
+        return Response({'token': token.key})
+
+class LogoutAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        request.user.auth_token.delete()
+        return Response(status=204)
