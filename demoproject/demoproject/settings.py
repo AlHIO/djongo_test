@@ -53,19 +53,7 @@ REST_FRAMEWORK = {
     ),
 }
 
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        # 也可以放全域 templates 資料夾
-        'DIRS': [ os.path.join(BASE_DIR, 'templates') ],  
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                # … 預設那些 …
-            ],
-        },
-    },
-]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -82,7 +70,7 @@ ROOT_URLCONF = 'demoproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [ os.path.join(BASE_DIR, 'templates') ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -94,6 +82,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'demoproject.wsgi.application'
 
