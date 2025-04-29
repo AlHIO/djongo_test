@@ -18,7 +18,10 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('accounts.urls')),
-    # HTML 登入登出、密碼重設等，直接用 Django 內建
+    
+    # 1) HTML 登入／登出（用 Django 內建 LoginView/LogoutView）
     path('accounts/', include('django.contrib.auth.urls')),
+
+    # 2) API 登入／登出
+    path('api/accounts/', include('accounts.api_urls')),
 ]
