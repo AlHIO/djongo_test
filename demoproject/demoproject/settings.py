@@ -10,6 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import os
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -49,6 +52,20 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     ),
 }
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        # 也可以放全域 templates 資料夾
+        'DIRS': [ os.path.join(BASE_DIR, 'templates') ],  
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                # … 預設那些 …
+            ],
+        },
+    },
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
