@@ -1,8 +1,15 @@
+# demoproject/accounts/views.py
+
 from django.contrib.auth import authenticate
+from django.urls import reverse_lazy
+from django.views import generic
+from django.contrib.auth.forms import UserCreationForm
+
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.authtoken.models import Token
+
 
 class LoginAPIView(APIView):
     permission_classes = [AllowAny]
@@ -16,9 +23,22 @@ class LoginAPIView(APIView):
         token, _ = Token.objects.get_or_create(user=user)
         return Response({'token': token.key})
 
+
 class LogoutAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request):
         request.user.auth_token.delete()
         return Response(status=204)
+
+
+# ─────────── 新增以下這段 ───────────
+
+class SignUpView(generic.CreateView):
+    """
+    HTML 註冊頁面 (使用 Django 內建的 UserCreationForm)
+    註冊成功後 redirect 回 'login' (accounts/login/)
+    """
+    form_class = UserCreationForm
+    template_name = 'registration/signup.html'
+    success_url = reverse_lazy('login')
