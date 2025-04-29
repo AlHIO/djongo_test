@@ -86,6 +86,9 @@ TEMPLATES = [
 # 登入成功後會 redirect 到這裡
 LOGIN_REDIRECT_URL = '/accounts/profile/'
 
+# 登出後要導回哪裡（與 LOGIN_REDIRECT_URL 類似）
+LOGOUT_REDIRECT_URL = '/accounts/login/'
+
 WSGI_APPLICATION = 'demoproject.wsgi.application'
 
 
