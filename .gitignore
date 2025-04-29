@@ -1,0 +1,82 @@
+# ─── Python 相關 ───────────────────────────────────
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C 扩展
+*.so
+
+# 安裝套件檔案
+pip-selfcheck.json
+
+# PyInstaller
+#  如果你用 pyinstaller 打包
+dist/
+build/
+*.manifest
+*.spec
+
+# Wheel 檔案
+*.whl
+
+# 執行測試時產生的日誌或快照
+.pytest_cache/
+htmlcov/
+
+# coverage report
+.coverage
+coverage.xml
+*,cover
+# mypy type checker
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Django 相關 ────────────────────────────────────────
+# SQLite 資料庫（開發用）
+db.sqlite3
+# media 上傳檔案
+/media/
+/staticfiles/
+
+# Django migrations（可選，看團隊規範是否要納入版本控制）
+# **若團隊希望一併管理 migration 檔，可把下面兩行刪掉**
+*/migrations/*.py
+*/migrations/*.pyc
+!*/migrations/__init__.py
+
+# 環境設定檔
+.env
+env/
+venv/
+.venv/
+
+# VS Code
+.vscode/
+
+# PyCharm / IntelliJ
+.idea/
+*.iml
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Editor backup
+*~
+*.swp
+*.swo
+
+# Logs and local runtime files
+*.log
+*.pid
+*.pid.lock
+
+# 其他常見
+*.sqlite3
+*.db
