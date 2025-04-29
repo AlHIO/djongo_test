@@ -82,4 +82,4 @@ Desktop.ini
 *.db
 
 # 其他專案
-/demoapp
+demoapp/
