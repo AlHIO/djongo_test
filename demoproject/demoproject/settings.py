@@ -105,12 +105,29 @@ DATABASES = {
 
 '''
 
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'demodatabase'
     }
 }
+'''
+
+import os
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'djongo',
+        'NAME': os.environ.get('DJONGO_DB_NAME', 'your_db_name'),
+        'CLIENT': {
+            'host': os.environ.get('DJONGO_CLIENT_HOST', 'localhost'),
+            'port': int(os.environ.get('DJONGO_CLIENT_PORT', 27017)),
+        }
+    }
+}
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
