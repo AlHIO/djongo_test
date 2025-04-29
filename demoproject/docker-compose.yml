@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:5.0
+    container_name: djongo_mongo
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_DATABASE: your_db_name
+    volumes:
+      - mongo_data:/data/db
+    ports:
+      - '27017:27017'
+
+  web:
+    build: .
+    container_name: djongo_web
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/app
+    ports:
+      - '8000:8000'
+    depends_on:
+      - mongo
+    environment:
+      # 對應 settings.py 裡的 DATABASES
+      DJONGO_DB_NAME: your_db_name
+      DJONGO_CLIENT_HOST: mongo
+      DJANGO_SETTINGS_MODULE: demoproject.settings
+
+volumes:
+  mongo_data:
