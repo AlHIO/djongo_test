@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'demoapp',
+    # 'demoapp',
     'rest_framework',             # DRF 框架
     'rest_framework.authtoken',   # 啟用 TokenAuthentication :contentReference[oaicite:2]{index=2}
     'accounts',                   # 自訂的帳號 App
