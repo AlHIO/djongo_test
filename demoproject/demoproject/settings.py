@@ -38,10 +38,20 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'demoapp',
-    'rest_framework',
-    'rest_framework.authtoken',   # ← 直接啟用 DRF 內建的 Token 功能
-    'accounts',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'rest_framework',             # DRF 框架
+    'rest_framework.authtoken',   # 啟用 TokenAuthentication :contentReference[oaicite:2]{index=2}
+    'accounts',                   # 自訂的帳號 App
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
