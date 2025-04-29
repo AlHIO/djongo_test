@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'demoapp',
+    'rest_framework',
+    'rest_framework.authtoken',   # ← 直接啟用 DRF 內建的 Token 功能
     'accounts',
 ]
 
