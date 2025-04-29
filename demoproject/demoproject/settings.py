@@ -83,6 +83,8 @@ TEMPLATES = [
     },
 ]
 
+# 登入成功後會 redirect 到這裡
+LOGIN_REDIRECT_URL = '/accounts/profile/'
 
 WSGI_APPLICATION = 'demoproject.wsgi.application'
 
